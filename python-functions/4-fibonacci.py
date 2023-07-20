@@ -13,4 +13,5 @@ def fibonacci_sequence(n):
         a, b = b, a + b
 
     return fibonacci_numbers
+fibonacci_sequence = __import__('4-fibonacci').fibonacci_sequence
 
