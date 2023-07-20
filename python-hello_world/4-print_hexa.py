@@ -1,3 +1,6 @@
 #!/usr/bin/python3
 for num in range(99):
-    print(f"{num} = {hex(num)}")
+    a=hex(num)
+    txt= num , "= {}".format(a)
+    print(txt)
+    
