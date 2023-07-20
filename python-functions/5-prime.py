@@ -12,3 +12,4 @@ def is_prime(number):
             return False
 
     return True
+is_prime = __import__('5-prime').is_prime
