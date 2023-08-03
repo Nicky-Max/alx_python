@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 
-def raise_exception():
-    
+def raise_exception(x=""):
+    x = "Exception raised"    
     try:
-        x = "string" + 5
+        raise TypeError(x)
     except TypeError as te:
-        print("Exception raised")
+        print(te)
 
 if __name__ == "__main__":
-    raise_exception()       
+    raise_exception(x="Exeption raised")       
    
 
 
