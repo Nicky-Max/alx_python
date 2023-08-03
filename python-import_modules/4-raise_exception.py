@@ -3,9 +3,9 @@
 def raise_exception():
     
     try:
-        raise TypeError()
+        x = "string" + 5
     except TypeError as te:
-        print(te)
+        print("Exception raised")
 
 if __name__ == "__main__":
     raise_exception()       
