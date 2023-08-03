@@ -12,7 +12,7 @@ def print_arguments(argv):
         print("{} arguments:".format(num_arguments))
 
     if num_arguments == 0:
-        print(".")
+        print()
     else:
         for i, arg in enumerate(argv):
             print("{} : {}".format(i+1, arg))
