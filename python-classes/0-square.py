@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 class Square:
+     print(__import__("my_module").__doc__)
      
      """
         This functions allows the user to specify the size of the square at every instance
@@ -10,4 +11,5 @@ class Square:
      def __init__(self, size):
         
         self.__size = size
+        print(__import__("my_module").MyClass.__doc__)
 
