@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-Square = __import__('1-square').Square
+
 class Square:
     """
     This class defines a square by a private instance attribute 'size'.
@@ -27,3 +27,6 @@ class Square:
         if size < 0:
             raise ValueError("size must be >= 0")
         self.__size = size
+
+print(__import__("1-square").__doc__)
+print(__import__("1-square").Square.__doc__)
