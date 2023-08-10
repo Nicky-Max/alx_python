@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-
+"""
+this code asigns the size of a square 0 unless the the user defines it
+"""
 class Square:
     """
     This class defines a square by a private instance attribute 'size'.
@@ -22,11 +24,9 @@ class Square:
             TypeError: If size is not an integer.
             ValueError: If size is less than 0.
         """
-        if not isinstance(size, int):
+        if type(size) is not int:
             raise TypeError("size must be an integer")
         if size < 0:
             raise ValueError("size must be >= 0")
         self.__size = size
 
-print(__import__("1-square").__doc__)
-print(__import__("1-square").Square.__doc__)
