@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+This code allows the user to define the size of a square
+"""
 class Square:
     """
     This class defines a square by a private instance attribute 'size'.
@@ -18,8 +21,7 @@ class Square:
             size (int): The size of the square.
         """
         self.__size = size
-python3: 'print(__import__("0-square").Square.__doc__)'
-python3: 'print(__import__("0-square").Square.__init__.__doc__)'  
+  
 
 
 
