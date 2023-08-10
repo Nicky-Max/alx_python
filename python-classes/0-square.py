@@ -1,15 +1,24 @@
 #!/usr/bin/env python3
 class Square:
-     print(__import__("my_module").__doc__)
-     
-     """
-        This functions allows the user to specify the size of the square at every instance
-
-        Arg: 
-           size here is a private attribute since the  size of a square is crucial for a square, many things depend of it
     """
-     def __init__(self, size):
-        
+    This class defines a square by a private instance attribute 'size'.
+
+    Attributes:
+        __size (int): The size of the square.
+
+    Methods:
+        __init__(self, size): Initializes a new Square instance with the given size.
+    """
+
+    def __init__(self, size):
+        """
+        Initializes a new Square instance with the given size.
+
+        Args:
+            size (int): The size of the square.
+        """
         self.__size = size
-        print(__import__("my_module").MyClass.__doc__)
+
+python3 -c: 'print(__import__("0-square").Square.__doc__)'
+python3 -c: 'print(__import__("0-square").Square.__init__.__doc__)'       
 
