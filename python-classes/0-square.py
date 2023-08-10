@@ -19,6 +19,6 @@ class Square:
         """
         self.__size = size
 
-python3 -c: 'print(__import__("0-square").Square.__doc__)'
-python3 -c: 'print(__import__("0-square").Square.__init__.__doc__)'       
+'print(__import__("0-square").Square.__doc__)'
+'print(__import__("0-square").Square.__init__.__doc__)'       
 
