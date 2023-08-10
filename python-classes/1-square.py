@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+Square = __import__('1-square').Square
 class Square:
     """
     This class defines a square by a private instance attribute 'size'.
