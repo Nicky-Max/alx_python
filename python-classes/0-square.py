@@ -18,7 +18,6 @@ class Square:
             size (int): The size of the square.
         """
         self.__size = size
-
-'print(__import__("0-square").Square.__doc__)'
-'print(__import__("0-square").Square.__init__.__doc__)'       
+print(__import__("0-square").Square.__doc__)
+print(__import__("0-square").Square.__init__.__doc__)      
 
