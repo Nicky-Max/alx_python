@@ -19,6 +19,12 @@ class BaseGeometry(metaclass=BaseMeta):
         x = super().__dir__()
         list= [item for item in x if item != "__init_subclass__"]
         return list
+    
+    def area(self):
+        """
+        this function raises an exception 
+        """
+        raise Exception("area() is not implemented")
 
 
 
