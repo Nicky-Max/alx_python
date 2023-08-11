@@ -20,4 +20,5 @@ class Square(Rectangle):
         """
         This method overides the other methods
         """
-        return "[Square] ({}) {}/{} - {}".format(self.id, self.x, self.y, self.size)
+        return "[Square] ({}) {}/{} - {}".format(self.id, self.x, self.y, self.width)
+
