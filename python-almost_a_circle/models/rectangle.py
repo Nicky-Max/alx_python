@@ -3,7 +3,7 @@ This module imports Base class from the base module
 
 """
 
-from base import Base
+from models.base import Base
 """
 from the module base we imported Base class
 """
