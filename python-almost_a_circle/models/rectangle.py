@@ -140,11 +140,10 @@ class Rectangle(Base):
         """
         this method returns the number of "#" according to the width and height of a rectangle
         """
-        for row in range (self.height):
-            for column in range(self.width):
-                print("#", end="")
-            else:
-                print()
+        for _ in range(self.__y):
+            print()
+        for _ in range(self.__height):
+            print(" " * self.__x + "#" * self.__width)
 
     def __str__(self):
         """
@@ -152,4 +151,3 @@ class Rectangle(Base):
         """
         return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y, self.width, self.height)
 
-     
