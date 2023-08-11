@@ -146,4 +146,10 @@ class Rectangle(Base):
             else:
                 print()
 
+    def __str__(self):
+        """
+        this method overides the other methods above it
+        """
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y, self.width, self.height)
+
      
