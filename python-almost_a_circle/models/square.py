@@ -1,7 +1,7 @@
 """
 This module imports the rectangle class
 """
-from rectangle import Rectangle
+from models.rectangle import Rectangle
 
 """
 imported class rectangle
