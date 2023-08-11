@@ -1,0 +1,1 @@
+this project cover on all the aspect we have been learning on python (how to import, how create functions, how to create classes, how to create methods and attributes, how to create private and public attributes)
