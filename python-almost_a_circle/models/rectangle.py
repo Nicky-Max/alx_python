@@ -103,14 +103,13 @@ class Rectangle(Base):
     @x.setter
     def x(self, value):
         """
-        This setter method modifies the value of the x
+        This setter method modifies the value of the y
         """
-        if type(value) is not int:
+        if not isinstance(value, int):
             raise TypeError("x must be an integer")
-        elif value < 0:
+        if value < 0:
             raise ValueError("x must be >= 0")
-        else:
-            self.__x = value
+        self.__x = value
 
     @property
     def y(self):
