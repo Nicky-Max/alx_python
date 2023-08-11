@@ -135,3 +135,11 @@ class Rectangle(Base):
         this metohod calculates the area using the width and height defined
         """
         return self.__width * self.__height
+    
+    def display(self):
+        """
+        this method returns the number of "#" according to the width and height of a rectangle
+        """
+        for _ in range(self.__height):
+                return("#" * self.__width)
+        
