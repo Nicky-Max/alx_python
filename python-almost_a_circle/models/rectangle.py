@@ -90,7 +90,7 @@ class Rectangle(Base):
         elif value <= 0:
             raise ValueError("height must be > 0")
         else:
-            self.__width = value
+            self.__height = value
         
 
     @property
@@ -129,3 +129,9 @@ class Rectangle(Base):
             raise ValueError("y must be >= 0")
         else:
             self.__y = value
+
+    def area(self):
+        """
+        this metohod calculates the area using the width and height defined
+        """
+        return self.__width * self.__height
