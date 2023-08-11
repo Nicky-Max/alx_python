@@ -3,7 +3,7 @@ This module imports Base class from the base module
 
 """
 
-from models.base import Base
+from base import Base
 """
 from the module base we imported Base class
 """
@@ -37,7 +37,7 @@ class Rectangle(Base):
         elif height <= 0:
             raise ValueError("height must be > 0")
         else:
-            self.__width = height
+            self.__height = height
         
         if type(x) is not int:
             raise TypeError("x must be an integer")
@@ -140,9 +140,10 @@ class Rectangle(Base):
         """
         this method returns the number of "#" according to the width and height of a rectangle
         """
-        for row in range (self.__height):
-            for column in range(self.__width):
+        for row in range (self.height):
+            for column in range(self.width):
                 print("#", end="")
             else:
                 print()
-        
+
+     
