@@ -21,4 +21,18 @@ class Square(Rectangle):
         This method overides the other methods
         """
         return "[Square] ({}) {}/{} - {}".format(self.id, self.x, self.y, self.width)
+    
+    @property
+    def size(self):
+        """
+        This getter method is used to retrive values of the attribute width
+        """
+        return self.width
+    @size.setter
+    
+    def size(self, value):
+        """
+        This setter method modifies the value of the width
+        """
+        self.width = value
 
