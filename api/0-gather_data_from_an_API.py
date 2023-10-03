@@ -1,50 +1,49 @@
 #!/usr/bin/python
 """
-import requests and sys
+Import requests module
 """
-
 import requests
+"""
+Import sys module to get command line arguments
+"""
 import sys
+
 """
-define a function 
+Get the employee ID from the first argument
 """
+employee_id = sys.argv[1]
 
-def get_employee_data(employee_id):
-     """
-     Fetch employee details
-     """
-     employee_url = 'https://jsonplaceholder.typicode.com/users/{}'.format(employee_id)
-     employee_response = requests.get(employee_url)
-     employee_data = employee_response.json()
-
-    # Fetch employee TODO list
-     todos_url = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(employee_id)
-     todos_response = requests.get(todos_url)
-     todos_data = todos_response.json()
-
-     return employee_data, todos_data
 """
-define a function
+Define the base URL for the API
 """
-def display_todo_progress(employee_data, todos_data):
-    employee_name = employee_data['name']
-    total_tasks = len(todos_data)
-    done_tasks = [task for task in todos_data if task['completed']]
+base_url = "https://jsonplaceholder.typicode.com/users/"
 
-    print("Employee {} is done with tasks({}/{}):".format(employee_name, len(done_tasks), total_tasks))
-    
-    for task in done_tasks:
-        print("\t{}".format(task['title']))
+"""Get the employee details from the API"""
+employee = requests.get(base_url + employee_id).json()
 
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python script.py <employee_id>")
-        sys.exit(1)
+"""Get the employee name"""
+employee_name = employee["name"]
 
-    employee_id = int(sys.argv[1])
-    
-    try:
-        employee_data, todos_data = get_employee_data(employee_id)
-        display_todo_progress(employee_data, todos_data)
-    except requests.exceptions.RequestException as e:
-        print("Error: {}".fomart(e))
+""" Get the employee TODO list from the API"""
+todos = requests.get(base_url + employee_id + "/todos").json()
+
+"""Initialize the total and done tasks counters"""
+total_tasks = 0
+done_tasks = 0
+
+"""Initialize an empty list for the done tasks titles"""
+done_tasks_titles = []
+
+"""Loop through the todos list and update the counters and titles list"""
+for todo in todos:
+    total_tasks += 1
+    if todo["completed"]:
+        done_tasks += 1
+        done_tasks_titles.append(todo["title"])
+
+"""Print the first line with the employee name and tasks progress"""
+print("Employee {} is done with tasks({}/{}):".format(employee_name, done_tasks, total_tasks))
+
+"""Print the titles of the done tasks with a tabulation and a space before each one"""
+for title in done_tasks_titles:
+    print("\t " + title)
