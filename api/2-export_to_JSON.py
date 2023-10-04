@@ -1,15 +1,21 @@
 #!/usr/bin/python
-"""import requests module"""
+"""
+import requests module
+"""
 import requests
 """ import sys"""
 import sys
 """ import json"""
 import json
 
-"""Get the employee ID from the command line arguments"""
+"""
+Get the employee ID from the command line arguments
+"""
 employee_id = sys.argv[1]
 
-""" Define the base URL for the API"""
+""" 
+Define the base URL for the API
+"""
 base_url = "https://jsonplaceholder.typicode.com/users/"
 
 """ Get the employee details from the API"""
