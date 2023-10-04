@@ -34,7 +34,9 @@ done_tasks = 0
 """ Initialize a list for tasks"""
 tasks_list = []
 
-""" Loop through the todos list and update the counters and tasks list"""
+"""
+ Loop through the todos list and update the counters and tasks list
+ """
 for todo in todos:
     total_tasks += 1
     task_data = {
@@ -54,5 +56,7 @@ file_name = f"{employee_id}.json"
 with open(file_name, 'w') as json_file:
     json.dump(json_data, json_file, indent=2)
 
-""" Print a message indicating the export is successful"""
+"""
+ Print a message indicating the export is successful
+ """
 print("Data exported to {}. Employee {} has completed {} out of {} tasks.".format(file_name, employee_name, done_tasks, total_tasks))
