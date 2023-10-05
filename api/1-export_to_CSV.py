@@ -1,51 +1,48 @@
-#!/usr/bin/python
-"""import requests module"""
 import requests
-""" Import sys module to get command line arguments"""
 import sys
-""" import csv"""
 import csv
 
-"""
-Get the employee ID from the first argument
-"""
-employee_id = sys.argv[1]
-"""
-Define the base URL for the API
-"""
-base_url = "https://jsonplaceholder.typicode.com/users/"
+def get_employee_data(employee_id):
+    base_url = "https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
+    todos_url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(employee_id)
 
-employee = requests.get(base_url + employee_id).json()
-employee_name = employee["name"]
-todos = requests.get(base_url + employee_id + "/todos").json()
+    """ Fetch employee data"""
+    employee = requests.get(base_url).json()
+    user_id = employee["id"]
+    username = employee["username"]
 
-"""Initialize the total and done tasks counters"""
-total_tasks = 0
-done_tasks = 0
-"""Initialize an empty list for the done tasks titles"""
-done_tasks_titles = []
-"""Loop through the todos list and update the counters and titles list"""
-for todo in todos:
-    total_tasks += 1
-    if todo["completed"]:
-        done_tasks += 1
-        done_tasks_titles.append(todo["title"])
+    """ Fetch TODO list for the employee"""
+    todos = requests.get(todos_url).json()
 
-"""Define the CSV filename"""
-csv_filename = "{}.csv".format(employee_id)
+    """ Export data in CSV format"""
+    csv_file_path = "{}.csv".format(user_id)
+    with open(csv_file_path, mode='w', newline='') as csv_file:
+        fieldnames = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
-""" Write data to CSV file"""
-with open(csv_filename, mode='w', newline='') as csv_file:
-    csv_writer = csv.writer(csv_file, quoting=csv.QUOTE_MINIMAL)
-    
-    """ Write header"""
-    csv_writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+        writer.writeheader()
 
-    """ Write rows"""
-    for title in done_tasks_titles:
-        csv_writer.writerow([employee_id, employee_name, "True", title])
+        for todo in todos:
+            writer.writerow({
+                'USER_ID': user_id,
+                'USERNAME': username,
+                'TASK_COMPLETED_STATUS': str(todo['completed']),
+                'TASK_TITLE': todo['title']
+            })
 
-    for i in range(total_tasks - done_tasks):
-        csv_writer.writerow([employee_id, employee_name, "False", todos[i]["title"]])
+    print(f"Data exported to {csv_file_path}")
 
-print("Employee {} tasks exported to {}".format(employee_name, csv_filename))
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <employee_id>")
+        sys.exit(1)
+
+    employee_id = sys.argv[1]
+
+    try:
+        employee_id = int(employee_id)
+    except ValueError:
+        print("Employee ID must be an integer.")
+        sys.exit(1)
+
+    get_employee_data(employee_id)
