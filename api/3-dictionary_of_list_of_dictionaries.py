@@ -1,52 +1,36 @@
 #!/usr/bin/python
-""" import modules"""
-""" import requests module"""
 import requests
-""" import sys"""
-import sys
-""" import json"""
 import json
 
-"""
-Get the employee ID from the command line arguments
-"""
-employee_id = sys.argv[1]
-""" 
-Define the base URL for the API
-"""
-base_url = "https://jsonplaceholder.typicode.com/users/"
 
-""" Get the employee details from the API"""
-employee = requests.get(base_url + employee_id).json()
+def export_todo_data():
+    # Retrieve employee details
+    url = "https://jsonplaceholder.typicode.com/users"
+    response = requests.get(url)
+    employees = response.json()
 
-""" Get the employee name"""
-employee_name = employee["name"]
-""" Get the employee TODO list from the API"""
-todos = requests.get(base_url + employee_id + "/todos").json()
+    todo_data = {}
+    for employee in employees:
+        employee_id = employee["id"]
+        employee_name = employee["name"]
 
-""" Initialize the total and done tasks counters"""
-total_tasks = 0
-done_tasks = 0
-""" Initialize a list for tasks"""
-done_tasks_list = []
+        # Retrieve TODO list for the employee
+        url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
+        response = requests.get(url)
+        todos = response.json()
 
-"""
- Loop through the todos list and update the counters and tasks list
- """
-for todo in todos:
-    total_tasks += 1
-    if todo["completed"]:
-        done_tasks += 1
-        done_tasks_list.append({"username": employee_name, "task": todo["title"], "completed": True})
-    else:
-        done_tasks_list.append({"username": employee_name, "task": todo["title"], "completed": False})
+        # Prepare TODO list data for the employee
+        employee_tasks = []
+        for todo in todos:
+            task_data = {
+                "username": employee_name,
+                "task": todo["title"],
+                "completed": todo["completed"]
+            }
+            employee_tasks.append(task_data)
 
-print("Employee {} is done with tasks({}/{}):".format(employee_name, done_tasks, total_tasks))
+        # Add employee's TODO list data to the main dictionary
+        todo_data[str(employee_id)] = employee_tasks
 
-for title in [task["task"] for task in done_tasks_list if task["completed"]]:
-    print("\t " + title)
-
-""" Export data in JSON format"""
-output_data = {employee_id: done_tasks_list}
-with open('todo_all_employees.json', 'w') as json_file:
-    json.dump(output_data, json_file, indent=2)
+    # Export TODO list data to JSON file
+    filename = "todo_all_employees.json"
